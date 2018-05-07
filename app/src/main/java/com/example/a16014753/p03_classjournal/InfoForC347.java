@@ -1,6 +1,7 @@
 package com.example.a16014753.p03_classjournal;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +16,14 @@ Button email;
     ListView lv;
     ArrayAdapter aa;
     ArrayList<Week> week;
+    Button web;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
         lv = this.findViewById(R.id.listViewWeek);
+        web = (Button)findViewById(R.id.buttonInfo);
         week = new ArrayList<Week>();
         week.add(new Week("Week 1", "B"));
         week.add(new Week("Week 2", "C"));
@@ -41,6 +44,14 @@ Button email;
                 startActivity(Intent.createChooser(email,
                         "Choose an Email client :"));
 
+            }
+        });
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent (Intent.ACTION_VIEW);
+                webIntent.setData(Uri.parse("http://www.rp.edu.sg"));
+                startActivity(webIntent);
             }
         });
     }
