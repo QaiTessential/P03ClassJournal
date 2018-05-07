@@ -14,6 +14,8 @@ public class AddData extends AppCompatActivity {
     TextView tvWeek, buttonAdd;
     RadioGroup rGroup;
     RadioButton rButton;
+    ArrayList<Week> week;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +24,14 @@ public class AddData extends AppCompatActivity {
 
 
         Intent i = getIntent();
-        int week = i.getIntExtra("week",0);
+        final int weak = i.getIntExtra("week",0);
+        final String weak1 = "Week " + String.valueOf(weak);
 
         rGroup = findViewById(R.id.radioGroup);
         buttonAdd = findViewById(R.id.buttonAdding);
         tvWeek = findViewById(R.id.tvWeek);
 
-        tvWeek.setText(String.valueOf(week));
+        tvWeek.setText("week " + String.valueOf(weak));
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +39,13 @@ public class AddData extends AppCompatActivity {
                 int selectedButtonId = rGroup.getCheckedRadioButtonId();
                 rButton = findViewById(selectedButtonId);
                 String radioValue = rButton.getText().toString();
-                Intent i = new Intent();
+                Week data = new Week(weak1, rButton.getText().toString());
+                Intent i = getIntent();
 
-                int weekNumber = Integer.parseInt(tvWeek.getText().toString());
-                i.putExtra("week", weekNumber);
-                i.putExtra("grade",radioValue);
+                String[] parts = tvWeek.getText().toString().split(" ");
+                String part1 = parts[1];
+                int weekNumber = Integer.parseInt(part1);
+               i.putExtra("newweek",data);
                 setResult(RESULT_OK,i);
                 finish();
             }

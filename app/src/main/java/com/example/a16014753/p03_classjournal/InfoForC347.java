@@ -87,8 +87,8 @@ public class InfoForC347 extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             if (data != null) {
                 if(requestCode == requestCodeAdd){
-                    Week week = (Week) data.getSerializableExtra("week");
-
+                    Week newweek = (Week) data.getSerializableExtra("newweek");
+week.add(newweek);
                     aa.notifyDataSetChanged();
                 }
             }
