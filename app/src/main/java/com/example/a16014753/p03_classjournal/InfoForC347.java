@@ -17,6 +17,7 @@ Button email;
     ArrayAdapter aa;
     ArrayList<Week> week;
     Button web;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,17 @@ Button email;
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String message = "";
+                for(int i = 0; i < week.size(); i++ ){
+                    message = message +"\n"+ week.get(i).getWeekNumber() + ": DG: " + week.get(i).getGrade();
+                }
+
                 Intent email = new Intent (Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL,new String[]{"jason_lim@rp.edu.sg"});
-                email.putExtra(Intent.EXTRA_TEXT,"Hi Faci, /n /n I am... /n Please see my remarks so far, thank you!");
+                email.putExtra(Intent.EXTRA_TEXT,"Hi Faci, \n \n I am... \n Please see my remarks so far, thank you!" +
+                        "\n \n" + message
+
+                );
                 email.setType("message/rfc822");
                 startActivity(Intent.createChooser(email,
                         "Choose an Email client :"));
