@@ -1,8 +1,11 @@
 package com.example.a16014753.p03_classjournal;
 
-public class Week {
+import java.io.Serializable;
+
+public class Week implements Serializable{
     private String weekNumber;
     private String grade;
+    private double score;
     public Week(String weekNumber, String grade){
         this.weekNumber = weekNumber;
         this.grade = grade;
