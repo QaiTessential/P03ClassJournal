@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 public class InfoForC347 extends AppCompatActivity {
 
-Button email;
+    int requestCodeAdd = 1;
+    Button email;
     ListView lv;
     ArrayAdapter aa;
     ArrayList<Week> week;
-    Button web;
+    Button web, buttonAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        buttonAdd = findViewById(R.id.buttonAdd);
 
         lv = this.findViewById(R.id.listViewWeek);
         web = (Button)findViewById(R.id.buttonInfo);
@@ -55,5 +58,33 @@ Button email;
                 startActivity(webIntent);
             }
         });
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int weekText = week.size()+1;
+                Intent i = new Intent(InfoForC347.this,
+                        AddData.class);
+                i.putExtra("week", weekText);
+                startActivityForResult(i,requestCodeAdd);
+            }
+        });
+
+
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            if (data != null) {
+                if(requestCode == requestCodeAdd){
+                    Week week = (Week) data.getSerializableExtra("week");
+
+                    aa.notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
 }
