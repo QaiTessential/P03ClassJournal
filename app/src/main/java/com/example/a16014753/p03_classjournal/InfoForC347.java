@@ -6,15 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class InfoForC347 extends AppCompatActivity {
 
     int requestCodeForAdd = 1;
     Button btnAddData;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        btnAddData = findViewById(R.id.buttonAdd);
+
+
+
+
 
         btnAddData.setOnClickListener(new View.OnClickListener() {
             @Override
