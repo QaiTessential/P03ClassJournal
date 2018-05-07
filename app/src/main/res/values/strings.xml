@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">P03-ClassJournal</string>
+    <string name="c347">C347</string>
+    <string name="info">Info</string>
+    <string name="add">Add</string>
+    <string name="faci">Email Faci</string>
 </resources>
